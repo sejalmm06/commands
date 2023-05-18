@@ -1,0 +1,36 @@
+
+*************************GIT MAVEN TOMCATE INSTRALLATION*******************************************
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+    
+    - name: Install Maven
+      apt:
+        name: maven
+        state: present
+    
+    - name: Install Tomcat9
+      apt:
+        name: tomcat9
+        state: present
+_________________________________________________________________________________________________________
+USING LOOP :
+_______________________________________________________________________________________________________
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Install Git, Maven, and Tomcat9
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - maven
+        - tomcat9
+**********************************************************************************************************
